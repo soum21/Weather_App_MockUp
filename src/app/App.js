@@ -1,7 +1,7 @@
 import React from 'react';
-
+import AppRouter from '../app/configs/router';
 function App() {
-	return <div>HEllo</div>;
+  return <AppRouter />;
 }
 
 export default App;
