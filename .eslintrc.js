@@ -24,6 +24,8 @@ module.exports = {
     'no-eval': 'error',
     'no-floating-decimal': 'error',
     'no-multi-spaces': 'error',
-    camelcase: [2, { properties: 'always' }]
+    camelcase: [2, { properties: 'always' }],
+
+    'react/prop-types': 0
   }
 };
