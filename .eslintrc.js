@@ -7,9 +7,10 @@ module.exports = {
   extends: ['react-app', 'eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
+      experimentalObjectRestSpread: true,
     },
-    ecmaVersion: 12,
+    ecmaVersion: 6,
     sourceType: 'module'
   },
   plugins: ['react', 'prettier'],

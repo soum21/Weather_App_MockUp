@@ -18,7 +18,10 @@ const HomePageStyle = () => ({
   submitButton: {
     width: '90%',
     backgroundColor: '#ef5350',
-    textTransform: 'none'
+    textTransform: 'none',
+    margin: '0 auto',
+    fontWeight: 'bold',
+    alignSelf: 'center'
   }
 });
 

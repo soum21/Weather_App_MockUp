@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Grid,
   makeStyles,
@@ -9,6 +9,7 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
+import { Context } from '../../configs/context';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import AppLayout from '../../components/appLayout';
@@ -35,23 +36,32 @@ const cities = [
 ];
 function Home() {
   const classes = useStyles();
-  const [state, setState] = useState({
+
+  const [state, dispatch] = useContext(Context);
+
+  const [inputState, setState] = useState({
     apiValue: 'ff9f895b2e884d6680530135202710',
     city: 'Kuala Lumpur'
   });
+
   const [checked, setCheck] = useState(false);
+
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.value });
-    console.log(state);
+    setState({ ...inputState, [event.target.name]: event.target.value });
+    console.log(inputState);
   };
+
   const handleChecked = (event) => {
     setCheck(!checked);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state, checked);
+    console.log(inputState, checked);
+    console.log('asd', state);
   };
-  const { apiValue, city } = state;
+
+  const { apiValue, city } = inputState;
 
   return (
     <AppLayout>
@@ -105,7 +115,11 @@ function Home() {
             id="city"
             name="city"
             select
-            label="City Name"
+            label={
+              <Typography variant="subtitle2" display="block">
+                City Name
+              </Typography>
+            }
             value={city}
             onChange={handleChange}
             helperText="Please select your city"
