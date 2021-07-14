@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+## Build and Run App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The applicaton was created using create-react-app , below given the details of this project.
 
-## Available Scripts
+## Prerequisite
 
-In the project directory, you can run:
+- Make sure you have installed nodejs.
+- Make sure you have installed yarn package manager
 
-### `yarn start`
+## Dependencies Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Please git clone the repo: [Git Hub Repo](https://github.com/soum21/ebworx_assesment.git)
+- Next run command `yarn install` in the root directory
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Running the application
 
-### `yarn test`
+1. To run the application in development mode please run the command `yarn start` on the root directory.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. To build for production run the command `yarn build`
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Our application starts at `App.js` file.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Global Context
+Our app wrapped with a global context which contains global states and Global reducer . Which makes these global states accessable in our project tree. Also we can dispatch action on these states from anywhere in the application.
 
-### `yarn eject`
+```javascript
+<AppContext> 
+{...elements}
+</AppContext>
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Router 
+For our project we have used Reach Router for routing. 
+Also we have used webpack magic comments for our dynamic imports of app modules.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Steps
+ 1. We create a function for dynamic import. And we send it to our custom Route creator component.
+ ```javascript 
+  <RouterCreator dynamicModuleResolve={dynamicModuleResolver} path={'/:module/*'} />
+ ```
+ 2. We wrap our lazy route inside `<Router >` tag of reach router.
+ 3. We load the bundle containing our Component. Here the module param is provided by reach router. This will return a promise.
+ 
+ ```javascript 
+  dynamicModuleResolver(module || '')
+ ```
+ 
+ 4. Then React.lazy is resolving them as react component.
+ ```javascript
+ React.lazy(() => component)
+ ```
+ 5. And finally we return the component under React.Suspense with a fallback Component.
+ 
+ 6. Our routes are basically our folder name under module folder.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+For More Information about React Lazy: [Code_Spliting_React](https://reactjs.org/docs/code-splitting.html)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Services 
+ - Our http service is written in a class call `apiService.js`. 
+ - Our ApiService class returns a promise which resolve successCase and reject errorCase. 
+ - we have functions for our Api urls 
+ - we have exported them from `services/index.js` 
 
-## Learn More
+# Components
+- Our Project contains resusable components
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Modules
+- Application modules are listed inside module folder
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Reducer
+- We use `useReducer()` hook for ease of use.
+- Our states are differentiated in different files.
 
-### Code Splitting
+# Assests 
+- All Static assests and list inside the assets folder. And exported from index file 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Theme
+- We set up our custom styling theme for different components.
+ 
+# Styling
+- The project uses css in js that is offered by material-ui React.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
