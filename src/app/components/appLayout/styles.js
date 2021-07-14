@@ -1,4 +1,4 @@
-const AppLayoutStyle = () => ({
+const AppLayoutStyle = (theme) => ({
   paperWrapper: {
     padding: '20',
     height: '80vh',

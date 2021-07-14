@@ -1,6 +1,9 @@
 const HomePageStyle = (theme) => ({
   form: {
-    margin: '150px 0px'
+    margin: theme.spacing(14, 0),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(7, 0)
+    }
   },
   textField: {
     width: '90%'
@@ -10,10 +13,10 @@ const HomePageStyle = (theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: '7px auto'
+    margin: theme.spacing(1, 0)
   },
   checkBox: {
-    marginLeft: '15px',
+    marginLeft: theme.spacing(2),
     fontSize: '8px'
   },
   submitButton: {

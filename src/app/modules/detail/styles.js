@@ -1,6 +1,6 @@
 const DetailPageStyle = (theme) => ({
   wrapper: {
-    margin: '20px 0'
+    margin: theme.spacing(4, 0)
   },
   textField: {
     width: '90%'
@@ -10,7 +10,7 @@ const DetailPageStyle = (theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: '7px auto'
+    margin: theme.spacing(1, 'auto')
   }
 });
 
