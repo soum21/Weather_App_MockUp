@@ -104,7 +104,7 @@ function Home() {
       <Grid container spacing={0} align="center" justifyContent="center" direction="column">
         <h3>EbWorx Weather App</h3>
       </Grid>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={classes.form}>
         <div className={classes.inputDiv}>
           <TextField
             error={!apiValue}

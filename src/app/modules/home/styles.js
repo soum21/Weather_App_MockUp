@@ -1,4 +1,7 @@
-const HomePageStyle = () => ({
+const HomePageStyle = (theme) => ({
+  form: {
+    margin: '150px 0px'
+  },
   textField: {
     width: '90%'
   },
