@@ -11,6 +11,10 @@ const DetailPageStyle = (theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     margin: theme.spacing(1, 'auto')
+  },
+  large: {
+    width: theme.spacing(15),
+    height: theme.spacing(15)
   }
 });
 
