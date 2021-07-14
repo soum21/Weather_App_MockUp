@@ -1,8 +1,8 @@
 const HomePageStyle = (theme) => ({
   form: {
-    margin: theme.spacing(14, 0),
+    margin: theme.spacing(7, 0),
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(7, 0)
+      padding: theme.spacing(2, 0)
     }
   },
   textField: {
