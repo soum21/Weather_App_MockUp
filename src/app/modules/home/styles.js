@@ -1,6 +1,4 @@
 const HomePageStyle = () => ({
-  container: {},
-  wrapper: {},
   textField: {
     width: '90%'
   },

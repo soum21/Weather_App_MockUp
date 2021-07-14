@@ -6,7 +6,7 @@ export default function globalReducer(state = globalStates, action) {
     case types.GET_WEATHER_SUCCESS:
       return {
         ...state,
-        weather: action.payload,
+        weather: action.weather,
         error: ''
       };
     case types.ERROR_WEATHER_DATA:
@@ -17,6 +17,7 @@ export default function globalReducer(state = globalStates, action) {
       };
     case types.RESET_HOME:
       return {
+        weather: [],
         error: ''
       };
     default:

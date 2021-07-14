@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import {
   Grid,
   makeStyles,
@@ -10,9 +10,12 @@ import {
   Button
 } from '@material-ui/core';
 import { Context } from '../../configs/context';
+import { navigate } from '@reach/router';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import AppLayout from '../../components/appLayout';
+import { Settings, HttpService, setWeatherUrl } from '../../configs/services';
+import * as types from '../../configs/redux/actionTypes';
 import styles from './styles';
 
 const useStyles = makeStyles(styles, { classNamePrefix: 'HomePage' });
@@ -40,38 +43,65 @@ function Home() {
   const [state, dispatch] = useContext(Context);
 
   const [inputState, setState] = useState({
-    apiValue: 'ff9f895b2e884d6680530135202710',
-    city: 'Kuala Lumpur'
+    apiValue: Settings.DEFAULT_API_KEY,
+    city: cities[0].value
   });
 
   const [checked, setCheck] = useState(false);
 
+  const [inputError, setInputError] = useState(false);
+
+  const { apiValue, city } = inputState;
+
   const handleChange = (event) => {
+    setInputError(false);
     setState({ ...inputState, [event.target.name]: event.target.value });
-    console.log(inputState);
   };
 
   const handleChecked = (event) => {
     setCheck(!checked);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(inputState, checked);
-    console.log('asd', state);
-  };
+  const onSuccess = useCallback(
+    (res) => {
+      dispatch({ type: types.GET_WEATHER_SUCCESS, weather: res });
+    },
+    [dispatch]
+  );
 
-  const { apiValue, city } = inputState;
+  const onError = useCallback(
+    (err) => {
+      dispatch({ type: types.ERROR_WEATHER_DATA, error: { errorCode: err.status, errorMsg: err.msg } });
+    },
+    [dispatch]
+  );
+
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      let queryUrl = setWeatherUrl(apiValue, city);
+      HttpService.open(queryUrl)
+        .then((res) => onSuccess(res))
+        .catch((err) => onError(err));
+    },
+    [apiValue, city, onError, onSuccess]
+  );
+
+  useEffect(() => {
+    const doNavigation = () => {
+      if (state.weather && state.weather.length !== 0) {
+        navigate('/detail', { state: { data: state } });
+      }
+      if (state.error && state.error.length !== 0) {
+        setInputError(true);
+      }
+    };
+    doNavigation();
+  }, [state]);
 
   return (
     <AppLayout>
-      <Grid
-        container
-        spacing={0}
-        align="center"
-        justifyContent="center"
-        direction="column"
-        className={classes.container}>
+      <Grid container spacing={0} align="center" justifyContent="center" direction="column">
         <h3>EbWorx Weather App</h3>
       </Grid>
       <form onSubmit={handleSubmit}>
@@ -87,7 +117,7 @@ function Home() {
             }
             defaultValue={apiValue}
             onChange={handleChange}
-            helperText={!apiValue ? 'Please enter API key.' : null}
+            helperText={!apiValue ? 'Please enter API key.' : inputError ? state.error.errorMsg : null}
             disabled={!checked}
             className={classes.textField}
           />
