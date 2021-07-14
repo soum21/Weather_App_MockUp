@@ -8,7 +8,7 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
-      experimentalObjectRestSpread: true,
+      experimentalObjectRestSpread: true
     },
     ecmaVersion: 6,
     sourceType: 'module'
@@ -25,8 +25,6 @@ module.exports = {
     'no-eval': 'error',
     'no-floating-decimal': 'error',
     'no-multi-spaces': 'error',
-    camelcase: [2, { properties: 'always' }],
-
-    'react/prop-types': 0
+    camelcase: [2, { properties: 'always' }]
   }
 };

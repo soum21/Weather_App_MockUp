@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Paper, makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 const useStyles = makeStyles(styles, { classNamePrefix: 'AppLayout' });
@@ -14,5 +15,9 @@ function AppLayout({ children }) {
     </Grid>
   );
 }
+
+AppLayout.propTypes = {
+  children: PropTypes.element
+};
 
 export default AppLayout;

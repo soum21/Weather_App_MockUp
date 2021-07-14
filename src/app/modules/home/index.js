@@ -90,7 +90,7 @@ function Home() {
   useEffect(() => {
     const doNavigation = () => {
       if (state.weather && state.weather.length !== 0) {
-        navigate('/detail', { state: { data: state } });
+        navigate('/detail');
       }
       if (state.error && state.error.length !== 0) {
         setInputError(true);
