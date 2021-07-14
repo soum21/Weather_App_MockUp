@@ -1,4 +1,7 @@
-const DetailPageStyle = () => ({
+const DetailPageStyle = (theme) => ({
+  wrapper: {
+    margin: '20px 0'
+  },
   textField: {
     width: '90%'
   },

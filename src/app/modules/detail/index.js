@@ -1,10 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { navigate } from '@reach/router';
 import AppLayout from '../../components/appLayout';
 import { Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 import * as types from '../../configs/redux/actionTypes';
 import { Context } from '../../configs/context';
-import PropTypes from 'prop-types';
 import Loading from '../../components/loading';
 import styles from './styles';
 
@@ -44,39 +42,38 @@ function Detail() {
     return (
       <AppLayout>
         <Grid container spacing={0} align="center" justifyContent="center" direction="column"></Grid>
-        <div className={classes.inputDiv}>
-          <TextField
-            defaultValue={changeToFloat(tempCelc)}
-            InputProps={{
-              readOnly: true
-            }}
-            className={classes.textField}
-            label={
-              <Typography variant="subtitle2" display="block">
-                Celcius
-              </Typography>
-            }
-          />
-        </div>
-        <div className={classes.inputDiv}>
-          <TextField
-            defaultValue={changeToFloat(tempFar)}
-            className={classes.textField}
-            InputProps={{
-              readOnly: true
-            }}
-            label={
-              <Typography variant="subtitle2" display="block">
-                Farenheit
-              </Typography>
-            }
-          />
+        <div className={classes.wrapper}>
+          <div className={classes.inputDiv}>
+            <TextField
+              defaultValue={changeToFloat(tempCelc)}
+              InputProps={{
+                readOnly: true
+              }}
+              className={classes.textField}
+              label={
+                <Typography variant="subtitle2" display="block">
+                  Celcius
+                </Typography>
+              }
+            />
+          </div>
+          <div className={classes.inputDiv}>
+            <TextField
+              defaultValue={changeToFloat(tempFar)}
+              className={classes.textField}
+              InputProps={{
+                readOnly: true
+              }}
+              label={
+                <Typography variant="subtitle2" display="block">
+                  Farenheit
+                </Typography>
+              }
+            />
+          </div>
         </div>
       </AppLayout>
     );
   }
 }
-Detail.propTypes = {
-  id: PropTypes.any
-};
 export default Detail;
